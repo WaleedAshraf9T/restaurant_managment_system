@@ -146,7 +146,7 @@ function Login() {
     setError('');
     try {
       const apiBase = process.env.REACT_APP_API_URL || '';
-      const response = await axios.post(`${apiBase}/api/login`, {
+      const response = await axios.post(`http://localhost:3001/api/login`, {
         tenantId: tenantId.trim() || undefined, // Send undefined if empty
         username: username.trim(),
         password,

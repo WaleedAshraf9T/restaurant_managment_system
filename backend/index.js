@@ -13,7 +13,15 @@ require('dotenv').config();
 const orderRoutes = require('./orders'); // Import order routes
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000' }));
+// Replace the existing CORS configuration with this:
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',') 
+  : ['http://localhost:3000'];
+
+app.use(cors({ 
+  origin: allowedOrigins,
+  credentials: true // Add this if you need to send cookies/auth headers
+}));
 app.use(express.json());
 
 // Serve static files (logos)
